@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>ESBI Viewer</title>
     <!-- 共通CSSフラグメント -->
     <th:block th:replace="~{fragments/common-css :: commonCss}"></th:block>
 </head>
@@ -15,15 +15,68 @@
     <main class="flex-grow-1 py-5">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-8 col-lg-6">
                     <div class="card shadow">
                         <div class="card-body text-center">
                             <h1 class="card-title h3 mb-4 text-primary">
-                                <i class="bi bi-house-door-fill me-2"></i>Index
+                                <i class="bi bi-pie-chart-fill me-2"></i>ESBI Viewer
                             </h1>
-                            <div class="alert alert-info border-start border-4 border-info">
+                            <div class="alert alert-info border-start border-4 border-info mb-4">
                                 <i class="bi bi-info-circle-fill me-2"></i>
                                 <span th:text="${message}"></span>
+                            </div>
+                            
+                            <p class="lead mb-4">
+                                ESBIクワドラントであなたの収入構造を可視化し、<br>
+                                財務的自由への道筋を明確にしましょう。
+                            </p>
+                            
+                            <div class="row g-3 mb-4">
+                                <div class="col-6">
+                                    <div class="card bg-primary bg-opacity-10 border-primary">
+                                        <div class="card-body p-3">
+                                            <i class="bi bi-person-fill text-primary" style="font-size: 2rem;"></i>
+                                            <h6 class="text-primary mt-2 mb-0">Employee</h6>
+                                            <small class="text-muted">従業員</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card bg-success bg-opacity-10 border-success">
+                                        <div class="card-body p-3">
+                                            <i class="bi bi-briefcase-fill text-success" style="font-size: 2rem;"></i>
+                                            <h6 class="text-success mt-2 mb-0">Self-employed</h6>
+                                            <small class="text-muted">自営業</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card bg-warning bg-opacity-10 border-warning">
+                                        <div class="card-body p-3">
+                                            <i class="bi bi-building-fill text-warning" style="font-size: 2rem;"></i>
+                                            <h6 class="text-warning mt-2 mb-0">Business owner</h6>
+                                            <small class="text-muted">事業主</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card bg-info bg-opacity-10 border-info">
+                                        <div class="card-body p-3">
+                                            <i class="bi bi-graph-up-arrow text-info" style="font-size: 2rem;"></i>
+                                            <h6 class="text-info mt-2 mb-0">Investor</h6>
+                                            <small class="text-muted">投資家</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <a href="/esbi/input" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-pencil-square me-2"></i>ESBIデータを入力する
+                                </a>
+                                <a href="/esbi/guide" class="btn btn-outline-info">
+                                    <i class="bi bi-info-circle me-2"></i>ESBIについて学ぶ
+                                </a>
                             </div>
                         </div>
                     </div>
