@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>myproject</artifactId>
     <version>1.0.0</version>
+    <artifactId>esbi-viewer</artifactId>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -84,7 +84,7 @@
     </dependencies>
 
     <build>
-        <finalName>myproject</finalName>
+        <finalName>esbi-viewer</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
