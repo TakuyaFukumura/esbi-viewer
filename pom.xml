@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>myproject</artifactId>
-    <version>1.0.0</version>
+    <artifactId>esbi-viewer</artifactId>
+    <version>0.1.0</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -84,7 +84,7 @@
     </dependencies>
 
     <build>
-        <finalName>myproject</finalName>
+        <finalName>esbi-viewer</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -113,6 +113,19 @@
                     <threshold>Low</threshold>
                     <includeFilterFile>spotbugs-include.xml</includeFilterFile>
                     <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Spec.java</include>
+                        <include>**/*Spec.groovy</include>
+                        <include>**/*Test.java</include>
+                        <include>**/*Test.groovy</include>
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>
