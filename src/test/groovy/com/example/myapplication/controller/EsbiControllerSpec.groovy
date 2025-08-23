@@ -22,6 +22,15 @@ class EsbiControllerSpec extends Specification {
     def esbiController = new EsbiController(esbiService)
     def mockMvc = MockMvcBuilders.standaloneSetup(esbiController).build()
 
+    def "ホームページが正常に表示されること"() {
+        when: "ルートパスにアクセス"
+        def result = mockMvc.perform(get("/"))
+
+        then: "ステータスが200でindexビューが返される"
+        result.andExpect(status().isOk())
+              .andExpect(view().name("index"))
+    }
+
     def "ESBIデータ入力ページが正常に表示されること"() {
         given: "空のESBIデータ"
         esbiService.getLatestDataByUser("default_user") >> Optional.empty()

@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/esbi")
 public class EsbiController {
 
     private final EsbiService esbiService;
@@ -24,7 +23,12 @@ public class EsbiController {
         this.esbiService = esbiService;
     }
 
-    @GetMapping("/input")
+    @GetMapping("/")
+    public String home() {
+        return "index";
+    }
+
+    @GetMapping("/esbi/input")
     public String inputForm(Model model) {
         // デフォルトユーザー名を設定（実際のアプリケーションでは認証システムから取得）
         String defaultUser = "default_user";
@@ -39,7 +43,7 @@ public class EsbiController {
         return "esbi/input";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/esbi/save")
     public String saveEsbiData(
             @RequestParam(value = "employeeIncome", defaultValue = "0") BigDecimal employeeIncome,
             @RequestParam(value = "selfEmployedIncome", defaultValue = "0") BigDecimal selfEmployedIncome,
@@ -59,7 +63,7 @@ public class EsbiController {
         }
     }
 
-    @GetMapping("/visualization")
+    @GetMapping("/esbi/visualization")
     public String visualization(Model model) {
         String defaultUser = "default_user";
         Optional<EsbiData> latestData = esbiService.getLatestDataByUser(defaultUser);
@@ -81,7 +85,7 @@ public class EsbiController {
         return "esbi/visualization";
     }
 
-    @GetMapping("/history")
+    @GetMapping("/esbi/history")
     public String history(Model model) {
         String defaultUser = "default_user";
         List<EsbiData> historyData = esbiService.getAllDataByUser(defaultUser);
@@ -89,7 +93,7 @@ public class EsbiController {
         return "esbi/history";
     }
 
-    @GetMapping("/guide")
+    @GetMapping("/esbi/guide")
     public String guide() {
         return "esbi/guide";
     }
