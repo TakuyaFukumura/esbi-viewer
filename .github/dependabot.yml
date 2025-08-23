@@ -30,7 +30,6 @@ updates:
       timezone: "Asia/Tokyo"
     labels:
       - "dependencies"
-      - "github-actions"
     assignees:
       - "TakuyaFukumura"
     open-pull-requests-limit: 5
