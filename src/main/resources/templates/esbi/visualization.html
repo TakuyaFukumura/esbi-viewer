@@ -72,9 +72,9 @@
                                     ¥<span
                                         th:text="${#numbers.formatDecimal(totalIncome, 0, 'COMMA', 0, 'POINT')}">0</span>
                                 </h2>
-                                <small class="text-muted"
-                                       th:text="${#temporals.format(esbiData.createdAt, 'yyyy/MM/dd HH:mm')}">
-                                    作成日時
+                                <small class="text-muted">
+                                    作成日時:
+                                    <span th:text="${#temporals.format(esbiData.createdAt, 'yyyy/MM/dd HH:mm')}"></span>
                                 </small>
                             </div>
 
