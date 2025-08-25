@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="https://www.thymeleaf.org" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESBI可視化 - ESBI Viewer</title>
+    <!-- 共通CSSフラグメント -->
+    <th:block th:replace="~{fragments/common-css :: commonCss}"></th:block>
+    <style>
+        .esbi-quadrant {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .esbi-quadrant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .quadrant-content {
+            text-align: center;
+        }
+        .percentage-display {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .amount-display {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- 共通ヘッダー -->
+    <th:block th:replace="~{fragments/header :: header}"></th:block>
+
+    <!-- メインコンテンツ -->
+    <main class="flex-grow-1 py-5">
+        <div class="container">
+            <!-- 成功メッセージ -->
+            <div th:if="${successMessage}" class="alert alert-success border-start border-4 border-success mb-4">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <span th:text="${successMessage}"></span>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h1 class="card-title h3 mb-4 text-primary text-center">
+                                <i class="bi bi-graph-up me-2"></i>ESBIクワドラント可視化
+                            </h1>
+                            
+                            <div th:if="${noData}" class="text-center py-5">
+                                <i class="bi bi-exclamation-circle text-muted" style="font-size: 4rem;"></i>
+                                <h3 class="text-muted mt-3">データがありません</h3>
+                                <p class="text-muted">まずはESBIデータを入力してください。</p>
+                                <a href="/esbi/input" class="btn btn-primary">
+                                    <i class="bi bi-pencil-square me-2"></i>データを入力する
+                                </a>
+                            </div>
+
+                            <div th:unless="${noData}">
+                                <!-- 合計収入表示 -->
+                                <div class="text-center mb-5">
+                                    <h4 class="text-muted">合計収入</h4>
+                                    <h2 class="text-primary fw-bold">
+                                        ¥<span th:text="${#numbers.formatDecimal(totalIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                    </h2>
+                                    <small class="text-muted" th:text="${esbiData.createdAt}">作成日時</small>
+                                </div>
+
+                                <!-- ESBIクワドラント -->
+                                <div class="row g-3 mb-4">
+                                    <!-- Employee (E) -->
+                                    <div class="col-md-6">
+                                        <div class="esbi-quadrant bg-primary bg-opacity-10 border-primary">
+                                            <div class="quadrant-content">
+                                                <i class="bi bi-person-fill text-primary" style="font-size: 2rem;"></i>
+                                                <h5 class="mt-2 text-primary fw-bold">Employee (従業員)</h5>
+                                                <div class="percentage-display text-primary" th:text="${#numbers.formatDecimal(employeePercentage, 0, 2)} + '%'">0%</div>
+                                                <div class="amount-display">
+                                                    ¥<span th:text="${#numbers.formatDecimal(esbiData.employeeIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Self-employed (S) -->
+                                    <div class="col-md-6">
+                                        <div class="esbi-quadrant bg-success bg-opacity-10 border-success">
+                                            <div class="quadrant-content">
+                                                <i class="bi bi-briefcase-fill text-success" style="font-size: 2rem;"></i>
+                                                <h5 class="mt-2 text-success fw-bold">Self-employed (自営業)</h5>
+                                                <div class="percentage-display text-success" th:text="${#numbers.formatDecimal(selfEmployedPercentage, 0, 2)} + '%'">0%</div>
+                                                <div class="amount-display">
+                                                    ¥<span th:text="${#numbers.formatDecimal(esbiData.selfEmployedIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Business owner (B) -->
+                                    <div class="col-md-6">
+                                        <div class="esbi-quadrant bg-warning bg-opacity-10 border-warning">
+                                            <div class="quadrant-content">
+                                                <i class="bi bi-building-fill text-warning" style="font-size: 2rem;"></i>
+                                                <h5 class="mt-2 text-warning fw-bold">Business owner (事業主)</h5>
+                                                <div class="percentage-display text-warning" th:text="${#numbers.formatDecimal(businessOwnerPercentage, 0, 2)} + '%'">0%</div>
+                                                <div class="amount-display">
+                                                    ¥<span th:text="${#numbers.formatDecimal(esbiData.businessOwnerIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Investor (I) -->
+                                    <div class="col-md-6">
+                                        <div class="esbi-quadrant bg-info bg-opacity-10 border-info">
+                                            <div class="quadrant-content">
+                                                <i class="bi bi-graph-up-arrow text-info" style="font-size: 2rem;"></i>
+                                                <h5 class="mt-2 text-info fw-bold">Investor (投資家)</h5>
+                                                <div class="percentage-display text-info" th:text="${#numbers.formatDecimal(investorPercentage, 0, 2)} + '%'">0%</div>
+                                                <div class="amount-display">
+                                                    ¥<span th:text="${#numbers.formatDecimal(esbiData.investorIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- アクションボタン -->
+                                <div class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a href="/esbi/input" class="btn btn-primary">
+                                            <i class="bi bi-pencil-square me-2"></i>データを編集
+                                        </a>
+                                        <a href="/esbi/history" class="btn btn-outline-secondary">
+                                            <i class="bi bi-clock-history me-2"></i>履歴を見る
+                                        </a>
+                                        <a href="/esbi/guide" class="btn btn-outline-info">
+                                            <i class="bi bi-info-circle me-2"></i>ガイド
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 共通フッター -->
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>
