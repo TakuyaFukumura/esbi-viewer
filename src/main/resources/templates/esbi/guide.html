@@ -1,187 +1,187 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="https://www.thymeleaf.org" data-bs-theme="light">
+<html data-bs-theme="light" lang="ja" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>ESBIガイド - ESBI Viewer</title>
     <!-- 共通CSSフラグメント -->
     <th:block th:replace="~{fragments/common-css :: commonCss}"></th:block>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <!-- 共通ヘッダー -->
-    <th:block th:replace="~{fragments/header :: header}"></th:block>
+<!-- 共通ヘッダー -->
+<th:block th:replace="~{fragments/header :: header}"></th:block>
 
-    <!-- メインコンテンツ -->
-    <main class="flex-grow-1 py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h1 class="card-title h3 mb-4 text-primary text-center">
-                                <i class="bi bi-info-circle me-2"></i>ESBIクワドラントガイド
-                            </h1>
-                            
-                            <div class="mb-5">
-                                <h2 class="h4 mb-3 text-secondary">ESBIクワドラントとは？</h2>
-                                <p class="lead">
-                                    ESBIクワドラントは、収入源を4つのカテゴリーに分類する概念です。
-                                </p>
-                                <p>
-                                    このフレームワークを活用することで収入の仕組みを把握し、
-                                    財務的自由を目指すための具体的な戦略を立てることができます。
-                                </p>
-                            </div>
+<!-- メインコンテンツ -->
+<main class="flex-grow-1 py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1 class="card-title h3 mb-4 text-primary text-center">
+                            <i class="bi bi-info-circle me-2"></i>ESBIクワドラントガイド
+                        </h1>
 
-                            <div class="row g-4 mb-5">
-                                <!-- Employee (E) -->
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-primary">
-                                        <div class="card-header bg-primary text-white">
-                                            <h5 class="card-title mb-0">
-                                                <i class="bi bi-person-fill me-2"></i>E - Employee（従業員）
-                                            </h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <p><strong>特徴：</strong></p>
-                                            <ul>
-                                                <li>時間と労働力を提供して収入を得る</li>
-                                                <li>給与・時給・日給で収入が決まる</li>
-                                                <li>働かなければ収入が止まる</li>
-                                                <li>安定しているが収入に上限がある</li>
-                                            </ul>
-                                            <p><strong>例：</strong></p>
-                                            <p>会社員、公務員、アルバイト、パートタイマー</p>
-                                        </div>
+                        <div class="mb-5">
+                            <h2 class="h4 mb-3 text-secondary">ESBIクワドラントとは？</h2>
+                            <p class="lead">
+                                ESBIクワドラントは、収入源を4つのカテゴリーに分類する概念です。
+                            </p>
+                            <p>
+                                このフレームワークを活用することで収入の仕組みを把握し、
+                                財務的自由を目指すための具体的な戦略を立てることができます。
+                            </p>
+                        </div>
+
+                        <div class="row g-4 mb-5">
+                            <!-- Employee (E) -->
+                            <div class="col-md-6">
+                                <div class="card h-100 border-primary">
+                                    <div class="card-header bg-primary text-white">
+                                        <h5 class="card-title mb-0">
+                                            <i class="bi bi-person-fill me-2"></i>E - Employee（従業員）
+                                        </h5>
                                     </div>
-                                </div>
-
-                                <!-- Business owner (B) -->
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-warning">
-                                        <div class="card-header bg-warning text-dark">
-                                            <h5 class="card-title mb-0">
-                                                <i class="bi bi-building-fill me-2"></i>B - Business owner（事業主）
-                                            </h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <p><strong>特徴：</strong></p>
-                                            <ul>
-                                                <li>システムや他人の労働で収入を得る</li>
-                                                <li>自分がいなくても事業が回る</li>
-                                                <li>レバレッジ効果で大きな収入が期待できる</li>
-                                                <li>時間的自由を得られる可能性</li>
-                                            </ul>
-                                            <p><strong>例：</strong></p>
-                                            <p>オーナー経営者、フランチャイズオーナー、仕組み化された事業の所有者</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Self-employed (S) -->
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-success">
-                                        <div class="card-header bg-success text-white">
-                                            <h5 class="card-title mb-0">
-                                                <i class="bi bi-briefcase-fill me-2"></i>S - Self-employed（自営業）
-                                            </h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <p><strong>特徴：</strong></p>
-                                            <ul>
-                                                <li>自分のスキルや専門知識で収入を得る</li>
-                                                <li>自分がビジネスの中心</li>
-                                                <li>自分が働かないと収入が止まる</li>
-                                                <li>収入に上限があるが自由度は高い</li>
-                                            </ul>
-                                            <p><strong>例：</strong></p>
-                                            <p>フリーランス、医師、弁護士、コンサルタント、個人事業主</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Investor (I) -->
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-info">
-                                        <div class="card-header bg-info text-white">
-                                            <h5 class="card-title mb-0">
-                                                <i class="bi bi-graph-up-arrow me-2"></i>I - Investor（投資家）
-                                            </h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <p><strong>特徴：</strong></p>
-                                            <ul>
-                                                <li>お金がお金を生む仕組み</li>
-                                                <li>資産が働いて収入を生む</li>
-                                                <li>完全な不労所得の実現</li>
-                                                <li>金融リテラシーが重要</li>
-                                            </ul>
-                                            <p><strong>例：</strong></p>
-                                            <p>株式投資、債券、配当収入、権利収入</p>
-                                        </div>
+                                    <div class="card-body">
+                                        <p><strong>特徴：</strong></p>
+                                        <ul>
+                                            <li>時間と労働力を提供して収入を得る</li>
+                                            <li>給与・時給・日給で収入が決まる</li>
+                                            <li>働かなければ収入が止まる</li>
+                                            <li>安定しているが収入に上限がある</li>
+                                        </ul>
+                                        <p><strong>例：</strong></p>
+                                        <p>会社員、公務員、アルバイト、パートタイマー</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="mb-5">
-                                <h2 class="h4 mb-3 text-secondary">財務的自由への道筋</h2>
-                                <div class="alert alert-info border-start border-4 border-info">
-                                    <h5><i class="bi bi-lightbulb-fill me-2"></i>推奨される移行パターン</h5>
-                                    <ol>
-                                        <li><strong>E → S：</strong> まずはスキルを身につけて自営業者になる</li>
-                                        <li><strong>S → B：</strong> 事業を仕組み化して、他人の力を活用する</li>
-                                        <li><strong>B → I：</strong> 事業で得た収入を投資に回し、資産を増やす</li>
-                                        <li><strong>目標：</strong> BとIからの収入で生活費を賄う</li>
-                                    </ol>
-                                </div>
-                            </div>
-
-                            <div class="mb-5">
-                                <h2 class="h4 mb-3 text-secondary">このツールの使い方</h2>
-                                <div class="row g-3">
-                                    <div class="col-md-4">
-                                        <div class="text-center">
-                                            <i class="bi bi-1-circle-fill text-primary" style="font-size: 2rem;"></i>
-                                            <h6 class="mt-2">データ入力</h6>
-                                            <p class="small text-muted">各クワドラントの収入額を入力</p>
-                                        </div>
+                            <!-- Business owner (B) -->
+                            <div class="col-md-6">
+                                <div class="card h-100 border-warning">
+                                    <div class="card-header bg-warning text-dark">
+                                        <h5 class="card-title mb-0">
+                                            <i class="bi bi-building-fill me-2"></i>B - Business owner（事業主）
+                                        </h5>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="text-center">
-                                            <i class="bi bi-2-circle-fill text-success" style="font-size: 2rem;"></i>
-                                            <h6 class="mt-2">可視化</h6>
-                                            <p class="small text-muted">収入構造を視覚的に確認</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="text-center">
-                                            <i class="bi bi-3-circle-fill text-info" style="font-size: 2rem;"></i>
-                                            <h6 class="mt-2">分析・改善</h6>
-                                            <p class="small text-muted">定期的に見直して戦略を調整</p>
-                                        </div>
+                                    <div class="card-body">
+                                        <p><strong>特徴：</strong></p>
+                                        <ul>
+                                            <li>システムや他人の労働で収入を得る</li>
+                                            <li>自分がいなくても事業が回る</li>
+                                            <li>レバレッジ効果で大きな収入が期待できる</li>
+                                            <li>時間的自由を得られる可能性</li>
+                                        </ul>
+                                        <p><strong>例：</strong></p>
+                                        <p>オーナー経営者、フランチャイズオーナー、仕組み化された事業の所有者</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- アクションボタン -->
-                            <div class="text-center">
-                                <div class="btn-group" role="group">
-                                    <a href="/esbi/input" class="btn btn-primary btn-lg">
-                                        <i class="bi bi-pencil-square me-2"></i>データを入力する
-                                    </a>
-                                    <a href="/esbi/visualization" class="btn btn-outline-primary btn-lg">
-                                        <i class="bi bi-graph-up me-2"></i>可視化を見る
-                                    </a>
+                            <!-- Self-employed (S) -->
+                            <div class="col-md-6">
+                                <div class="card h-100 border-success">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="card-title mb-0">
+                                            <i class="bi bi-briefcase-fill me-2"></i>S - Self-employed（自営業）
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>特徴：</strong></p>
+                                        <ul>
+                                            <li>自分のスキルや専門知識で収入を得る</li>
+                                            <li>自分がビジネスの中心</li>
+                                            <li>自分が働かないと収入が止まる</li>
+                                            <li>収入に上限があるが自由度は高い</li>
+                                        </ul>
+                                        <p><strong>例：</strong></p>
+                                        <p>フリーランス、医師、弁護士、コンサルタント、個人事業主</p>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <!-- Investor (I) -->
+                            <div class="col-md-6">
+                                <div class="card h-100 border-info">
+                                    <div class="card-header bg-info text-white">
+                                        <h5 class="card-title mb-0">
+                                            <i class="bi bi-graph-up-arrow me-2"></i>I - Investor（投資家）
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>特徴：</strong></p>
+                                        <ul>
+                                            <li>お金がお金を生む仕組み</li>
+                                            <li>資産が働いて収入を生む</li>
+                                            <li>完全な不労所得の実現</li>
+                                            <li>金融リテラシーが重要</li>
+                                        </ul>
+                                        <p><strong>例：</strong></p>
+                                        <p>株式投資、債券、配当収入、権利収入</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <h2 class="h4 mb-3 text-secondary">財務的自由への道筋</h2>
+                            <div class="alert alert-info border-start border-4 border-info">
+                                <h5><i class="bi bi-lightbulb-fill me-2"></i>推奨される移行パターン</h5>
+                                <ol>
+                                    <li><strong>E → S：</strong> まずはスキルを身につけて自営業者になる</li>
+                                    <li><strong>S → B：</strong> 事業を仕組み化して、他人の力を活用する</li>
+                                    <li><strong>B → I：</strong> 事業で得た収入を投資に回し、資産を増やす</li>
+                                    <li><strong>目標：</strong> BとIからの収入で生活費を賄う</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <h2 class="h4 mb-3 text-secondary">このツールの使い方</h2>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <i class="bi bi-1-circle-fill text-primary" style="font-size: 2rem;"></i>
+                                        <h6 class="mt-2">データ入力</h6>
+                                        <p class="small text-muted">各クワドラントの収入額を入力</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <i class="bi bi-2-circle-fill text-success" style="font-size: 2rem;"></i>
+                                        <h6 class="mt-2">可視化</h6>
+                                        <p class="small text-muted">収入構造を視覚的に確認</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <i class="bi bi-3-circle-fill text-info" style="font-size: 2rem;"></i>
+                                        <h6 class="mt-2">分析・改善</h6>
+                                        <p class="small text-muted">定期的に見直して戦略を調整</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- アクションボタン -->
+                        <div class="text-center">
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-primary btn-lg" href="/esbi/input">
+                                    <i class="bi bi-pencil-square me-2"></i>データを入力する
+                                </a>
+                                <a class="btn btn-outline-primary btn-lg" href="/esbi/visualization">
+                                    <i class="bi bi-graph-up me-2"></i>可視化を見る
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <!-- 共通フッター -->
-    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+<!-- 共通フッター -->
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </body>
 </html>

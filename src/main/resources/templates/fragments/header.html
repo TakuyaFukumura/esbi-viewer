@@ -11,20 +11,28 @@
                     <!-- ESBIナビゲーション -->
                     <div class="navbar-nav me-3">
                         <div class="dropdown">
-                            <button class="btn btn-outline-light dropdown-toggle" type="button" id="esbiDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button aria-expanded="false" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown"
+                                    id="esbiDropdown" type="button">
                                 menu
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="esbiDropdown">
-                                <li><a class="dropdown-item" href="/esbi/input"><i class="bi bi-pencil-square me-2"></i>データ入力</a></li>
-                                <li><a class="dropdown-item" href="/esbi/visualization"><i class="bi bi-graph-up me-2"></i>可視化</a></li>
-                                <li><a class="dropdown-item" href="/esbi/history"><i class="bi bi-clock-history me-2"></i>履歴</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/esbi/guide"><i class="bi bi-info-circle me-2"></i>ガイド</a></li>
+                            <ul aria-labelledby="esbiDropdown" class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/esbi/input"><i class="bi bi-pencil-square me-2"></i>データ入力</a>
+                                </li>
+                                <li><a class="dropdown-item" href="/esbi/visualization"><i
+                                        class="bi bi-graph-up me-2"></i>可視化</a></li>
+                                <li><a class="dropdown-item" href="/esbi/history"><i
+                                        class="bi bi-clock-history me-2"></i>履歴</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/esbi/guide"><i class="bi bi-info-circle me-2"></i>ガイド</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <!-- ダークモード切替トグルボタン -->
-                    <button type="button" class="btn btn-outline-light me-2" id="darkModeToggle" title="ダークモード切替">
+                    <button class="btn btn-outline-light me-2" id="darkModeToggle" title="ダークモード切替"
+                            type="button">
                         <i class="bi bi-moon-fill" id="darkModeIcon"></i>
                     </button>
                 </div>

@@ -9,8 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface EsbiDataRepository extends JpaRepository<EsbiData, Long> {
-    
+
     List<EsbiData> findByUserNameOrderByCreatedAtDesc(String userName);
-    
+
     Optional<EsbiData> findTopByUserNameOrderByCreatedAtDesc(String userName);
 }

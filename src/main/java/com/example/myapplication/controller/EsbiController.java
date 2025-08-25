@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,13 +32,13 @@ public class EsbiController {
         // デフォルトユーザー名を設定（実際のアプリケーションでは認証システムから取得）
         String defaultUser = "default_user";
         Optional<EsbiData> latestData = esbiService.getLatestDataByUser(defaultUser);
-        
+
         if (latestData.isPresent()) {
             model.addAttribute("esbiData", latestData.get());
         } else {
             model.addAttribute("esbiData", new EsbiData());
         }
-        
+
         return "esbi/input";
     }
 
@@ -50,11 +49,11 @@ public class EsbiController {
             @RequestParam(value = "businessOwnerIncome", defaultValue = "0") BigDecimal businessOwnerIncome,
             @RequestParam(value = "investorIncome", defaultValue = "0") BigDecimal investorIncome,
             RedirectAttributes redirectAttributes) {
-        
+
         try {
             String defaultUser = "default_user";
-            esbiService.saveEsbiData(defaultUser, employeeIncome, selfEmployedIncome, 
-                                   businessOwnerIncome, investorIncome);
+            esbiService.saveEsbiData(defaultUser, employeeIncome, selfEmployedIncome,
+                    businessOwnerIncome, investorIncome);
             redirectAttributes.addFlashAttribute("successMessage", "ESBIデータを保存しました。");
             return "redirect:/esbi/visualization";
         } catch (Exception e) {
@@ -67,11 +66,11 @@ public class EsbiController {
     public String visualization(Model model) {
         String defaultUser = "default_user";
         Optional<EsbiData> latestData = esbiService.getLatestDataByUser(defaultUser);
-        
+
         if (latestData.isPresent()) {
             EsbiData data = latestData.get();
             BigDecimal totalIncome = esbiService.getTotalIncome(data);
-            
+
             model.addAttribute("esbiData", data);
             model.addAttribute("totalIncome", totalIncome);
             model.addAttribute("employeePercentage", esbiService.getPercentage(data.getEmployeeIncome(), totalIncome));
@@ -81,7 +80,7 @@ public class EsbiController {
         } else {
             model.addAttribute("noData", true);
         }
-        
+
         return "esbi/visualization";
     }
 
