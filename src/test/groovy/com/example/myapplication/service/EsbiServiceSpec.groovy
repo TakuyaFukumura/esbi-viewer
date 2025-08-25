@@ -4,7 +4,6 @@ import com.example.myapplication.entity.EsbiData
 import com.example.myapplication.repository.EsbiDataRepository
 import spock.lang.Specification
 
-import java.math.BigDecimal
 import java.time.LocalDateTime
 
 /**
@@ -22,7 +21,7 @@ class EsbiServiceSpec extends Specification {
         def selfEmployedIncome = new BigDecimal("2000000")
         def businessOwnerIncome = new BigDecimal("1000000")
         def investorIncome = new BigDecimal("500000")
-        
+
         def savedData = new EsbiData()
         savedData.id = 1L
         savedData.userName = userName
@@ -53,7 +52,7 @@ class EsbiServiceSpec extends Specification {
         def selfEmployedIncome = null
         def businessOwnerIncome = new BigDecimal("1000000")
         def investorIncome = null
-        
+
         def savedData = new EsbiData()
         savedData.userName = userName
         savedData.employeeIncome = employeeIncome
@@ -115,7 +114,7 @@ class EsbiServiceSpec extends Specification {
         def latestData = new EsbiData()
         latestData.id = 1L
         latestData.userName = userName
-        
+
         when: "最新データを取得"
         def result = esbiService.getLatestDataByUser(userName)
 

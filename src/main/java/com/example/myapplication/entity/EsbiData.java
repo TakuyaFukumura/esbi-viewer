@@ -20,12 +20,12 @@ public class EsbiData {
     private Long id;
 
     private String userName;
-    
+
     private BigDecimal employeeIncome;
     private BigDecimal selfEmployedIncome;
     private BigDecimal businessOwnerIncome;
     private BigDecimal investorIncome;
-    
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

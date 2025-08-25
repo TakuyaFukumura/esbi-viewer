@@ -20,11 +20,11 @@ public class EsbiService {
         this.esbiDataRepository = esbiDataRepository;
     }
 
-    public EsbiData saveEsbiData(String userName, BigDecimal employeeIncome, 
-                                BigDecimal selfEmployedIncome, BigDecimal businessOwnerIncome, 
-                                BigDecimal investorIncome) {
+    public EsbiData saveEsbiData(String userName, BigDecimal employeeIncome,
+                                 BigDecimal selfEmployedIncome, BigDecimal businessOwnerIncome,
+                                 BigDecimal investorIncome) {
         log.info("Saving ESBI data for user: {}", userName);
-        
+
         EsbiData esbiData = new EsbiData();
         esbiData.setUserName(userName);
         esbiData.setEmployeeIncome(employeeIncome != null ? employeeIncome : BigDecimal.ZERO);
@@ -33,7 +33,7 @@ public class EsbiService {
         esbiData.setInvestorIncome(investorIncome != null ? investorIncome : BigDecimal.ZERO);
         esbiData.setCreatedAt(LocalDateTime.now());
         esbiData.setUpdatedAt(LocalDateTime.now());
-        
+
         return esbiDataRepository.save(esbiData);
     }
 
@@ -69,7 +69,7 @@ public class EsbiService {
             return 0.0;
         }
         return amount.divide(total, 4, java.math.RoundingMode.HALF_UP)
-                     .multiply(BigDecimal.valueOf(100))
-                     .doubleValue();
+                .multiply(BigDecimal.valueOf(100))
+                .doubleValue();
     }
 }

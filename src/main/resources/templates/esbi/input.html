@@ -1,123 +1,123 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="https://www.thymeleaf.org" data-bs-theme="light">
+<html data-bs-theme="light" lang="ja" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>ESBIデータ入力 - ESBI Viewer</title>
     <!-- 共通CSSフラグメント -->
     <th:block th:replace="~{fragments/common-css :: commonCss}"></th:block>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <!-- 共通ヘッダー -->
-    <th:block th:replace="~{fragments/header :: header}"></th:block>
+<!-- 共通ヘッダー -->
+<th:block th:replace="~{fragments/header :: header}"></th:block>
 
-    <!-- メインコンテンツ -->
-    <main class="flex-grow-1 py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h1 class="card-title h3 mb-4 text-primary text-center">
-                                <i class="bi bi-pencil-square me-2"></i>ESBIデータ入力
-                            </h1>
-                            
-                            <!-- エラーメッセージ -->
-                            <div th:if="${errorMessage}" class="alert alert-danger border-start border-4 border-danger">
-                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                                <span th:text="${errorMessage}"></span>
-                            </div>
-                            
-                            <form action="/esbi/save" method="post">
-                                <div class="mb-3">
-                                    <label for="employeeIncome" class="form-label fw-bold">
-                                        <i class="bi bi-person-fill text-primary me-2"></i>E (Employee) - 従業員収入
-                                    </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">¥</span>
-                                        <input type="number" 
-                                               class="form-control" 
-                                               id="employeeIncome" 
-                                               name="employeeIncome" 
-                                               th:value="${esbiData.employeeIncome}" 
-                                               min="0" 
-                                               step="0.01" 
-                                               placeholder="0">
-                                    </div>
-                                    <div class="form-text">給与所得、時間労働による収入</div>
-                                </div>
+<!-- メインコンテンツ -->
+<main class="flex-grow-1 py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1 class="card-title h3 mb-4 text-primary text-center">
+                            <i class="bi bi-pencil-square me-2"></i>ESBIデータ入力
+                        </h1>
 
-                                <div class="mb-3">
-                                    <label for="selfEmployedIncome" class="form-label fw-bold">
-                                        <i class="bi bi-briefcase-fill text-success me-2"></i>S (Self-employed) - 自営業収入
-                                    </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">¥</span>
-                                        <input type="number" 
-                                               class="form-control" 
-                                               id="selfEmployedIncome" 
-                                               name="selfEmployedIncome" 
-                                               th:value="${esbiData.selfEmployedIncome}" 
-                                               min="0" 
-                                               step="0.01" 
-                                               placeholder="0">
-                                    </div>
-                                    <div class="form-text">個人事業主、フリーランスによる収入</div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="businessOwnerIncome" class="form-label fw-bold">
-                                        <i class="bi bi-building-fill text-warning me-2"></i>B (Business owner) - 事業主収入
-                                    </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">¥</span>
-                                        <input type="number" 
-                                               class="form-control" 
-                                               id="businessOwnerIncome" 
-                                               name="businessOwnerIncome" 
-                                               th:value="${esbiData.businessOwnerIncome}" 
-                                               min="0" 
-                                               step="0.01" 
-                                               placeholder="0">
-                                    </div>
-                                    <div class="form-text">事業収入、他人の労働による収入</div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label for="investorIncome" class="form-label fw-bold">
-                                        <i class="bi bi-graph-up-arrow text-info me-2"></i>I (Investor) - 投資家収入
-                                    </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">¥</span>
-                                        <input type="number" 
-                                               class="form-control" 
-                                               id="investorIncome" 
-                                               name="investorIncome" 
-                                               th:value="${esbiData.investorIncome}" 
-                                               min="0" 
-                                               step="0.01" 
-                                               placeholder="0">
-                                    </div>
-                                    <div class="form-text">株式、債券等の投資による収入</div>
-                                </div>
-
-                                <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary btn-lg">
-                                        <i class="bi bi-save me-2"></i>保存して可視化
-                                    </button>
-                                    <a href="/esbi/guide" class="btn btn-outline-secondary">
-                                        <i class="bi bi-info-circle me-2"></i>ESBIについて学ぶ
-                                    </a>
-                                </div>
-                            </form>
+                        <!-- エラーメッセージ -->
+                        <div class="alert alert-danger border-start border-4 border-danger" th:if="${errorMessage}">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <span th:text="${errorMessage}"></span>
                         </div>
+
+                        <form action="/esbi/save" method="post">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="employeeIncome">
+                                    <i class="bi bi-person-fill text-primary me-2"></i>E (Employee) - 従業員収入
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">¥</span>
+                                    <input class="form-control"
+                                           id="employeeIncome"
+                                           min="0"
+                                           name="employeeIncome"
+                                           placeholder="0"
+                                           step="0.01"
+                                           th:value="${esbiData.employeeIncome}"
+                                           type="number">
+                                </div>
+                                <div class="form-text">給与所得、時間労働による収入</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="selfEmployedIncome">
+                                    <i class="bi bi-briefcase-fill text-success me-2"></i>S (Self-employed) - 自営業収入
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">¥</span>
+                                    <input class="form-control"
+                                           id="selfEmployedIncome"
+                                           min="0"
+                                           name="selfEmployedIncome"
+                                           placeholder="0"
+                                           step="0.01"
+                                           th:value="${esbiData.selfEmployedIncome}"
+                                           type="number">
+                                </div>
+                                <div class="form-text">個人事業主、フリーランスによる収入</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="businessOwnerIncome">
+                                    <i class="bi bi-building-fill text-warning me-2"></i>B (Business owner) - 事業主収入
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">¥</span>
+                                    <input class="form-control"
+                                           id="businessOwnerIncome"
+                                           min="0"
+                                           name="businessOwnerIncome"
+                                           placeholder="0"
+                                           step="0.01"
+                                           th:value="${esbiData.businessOwnerIncome}"
+                                           type="number">
+                                </div>
+                                <div class="form-text">事業収入、他人の労働による収入</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold" for="investorIncome">
+                                    <i class="bi bi-graph-up-arrow text-info me-2"></i>I (Investor) - 投資家収入
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">¥</span>
+                                    <input class="form-control"
+                                           id="investorIncome"
+                                           min="0"
+                                           name="investorIncome"
+                                           placeholder="0"
+                                           step="0.01"
+                                           th:value="${esbiData.investorIncome}"
+                                           type="number">
+                                </div>
+                                <div class="form-text">株式、債券等の投資による収入</div>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary btn-lg" type="submit">
+                                    <i class="bi bi-save me-2"></i>保存して可視化
+                                </button>
+                                <a class="btn btn-outline-secondary" href="/esbi/guide">
+                                    <i class="bi bi-info-circle me-2"></i>ESBIについて学ぶ
+                                </a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <!-- 共通フッター -->
-    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+<!-- 共通フッター -->
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </body>
 </html>
