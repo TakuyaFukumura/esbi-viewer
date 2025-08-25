@@ -90,20 +90,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Self-employed (S) -->
-                                    <div class="col-md-6">
-                                        <div class="esbi-quadrant bg-success bg-opacity-10 border-success">
-                                            <div class="quadrant-content">
-                                                <i class="bi bi-briefcase-fill text-success" style="font-size: 2rem;"></i>
-                                                <h5 class="mt-2 text-success fw-bold">Self-employed (自営業)</h5>
-                                                <div class="percentage-display text-success" th:text="${#numbers.formatDecimal(selfEmployedPercentage, 0, 2)} + '%'">0%</div>
-                                                <div class="amount-display">
-                                                    ¥<span th:text="${#numbers.formatDecimal(esbiData.selfEmployedIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <!-- Business owner (B) -->
                                     <div class="col-md-6">
                                         <div class="esbi-quadrant bg-warning bg-opacity-10 border-warning">
@@ -113,6 +99,20 @@
                                                 <div class="percentage-display text-warning" th:text="${#numbers.formatDecimal(businessOwnerPercentage, 0, 2)} + '%'">0%</div>
                                                 <div class="amount-display">
                                                     ¥<span th:text="${#numbers.formatDecimal(esbiData.businessOwnerIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Self-employed (S) -->
+                                    <div class="col-md-6">
+                                        <div class="esbi-quadrant bg-success bg-opacity-10 border-success">
+                                            <div class="quadrant-content">
+                                                <i class="bi bi-briefcase-fill text-success" style="font-size: 2rem;"></i>
+                                                <h5 class="mt-2 text-success fw-bold">Self-employed (自営業)</h5>
+                                                <div class="percentage-display text-success" th:text="${#numbers.formatDecimal(selfEmployedPercentage, 0, 2)} + '%'">0%</div>
+                                                <div class="amount-display">
+                                                    ¥<span th:text="${#numbers.formatDecimal(esbiData.selfEmployedIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
                                                 </div>
                                             </div>
                                         </div>
