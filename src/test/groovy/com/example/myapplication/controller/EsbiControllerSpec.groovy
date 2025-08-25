@@ -129,4 +129,34 @@ class EsbiControllerSpec extends Specification {
         result.andExpect(status().isOk())
                 .andExpect(view().name("esbi/guide"))
     }
+
+    def "ESBIデータ削除が正常に動作すること"() {
+        given: "削除するデータのID"
+        def dataId = 1L
+
+        when: "データを削除"
+        def result = mockMvc.perform(post("/esbi/delete")
+                .param("id", dataId.toString()))
+
+        then: "削除処理が呼び出される"
+        1 * esbiService.deleteData(dataId)
+
+        and: "履歴ページにリダイレクト"
+        result.andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/esbi/history"))
+    }
+
+    def "ESBIデータ削除でエラーが発生した場合の処理"() {
+        given: "削除するデータのID"
+        def dataId = 1L
+
+        when: "削除でエラーが発生"
+        esbiService.deleteData(dataId) >> { throw new RuntimeException("削除エラー") }
+        def result = mockMvc.perform(post("/esbi/delete")
+                .param("id", dataId.toString()))
+
+        then: "履歴ページにリダイレクト"
+        result.andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/esbi/history"))
+    }
 }
