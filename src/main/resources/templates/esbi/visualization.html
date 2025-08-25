@@ -70,7 +70,7 @@
                                 <h4 class="text-muted">合計収入</h4>
                                 <h2 class="text-primary fw-bold">
                                     ¥<span
-                                        th:text="${#numbers.formatDecimal(totalIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                        th:text="${#numbers.formatDecimal(totalIncome, 0, 'COMMA', 0, 'POINT')}">0</span>
                                 </h2>
                                 <small class="text-muted" th:text="${esbiData.createdAt}">作成日時</small>
                             </div>
@@ -84,11 +84,11 @@
                                             <i class="bi bi-person-fill text-primary" style="font-size: 2rem;"></i>
                                             <h5 class="mt-2 text-primary fw-bold">Employee (従業員)</h5>
                                             <div class="percentage-display text-primary"
-                                                 th:text="${#numbers.formatDecimal(employeePercentage, 0, 2)} + '%'">0%
+                                                 th:text="${#numbers.formatDecimal(employeePercentage, 0, 0)} + '%'">0%
                                             </div>
                                             <div class="amount-display">
                                                 ¥<span
-                                                    th:text="${#numbers.formatDecimal(esbiData.employeeIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                                    th:text="${#numbers.formatDecimal(esbiData.employeeIncome, 0, 'COMMA', 0, 'POINT')}">0</span>
                                             </div>
                                         </div>
                                     </div>
@@ -101,12 +101,12 @@
                                             <i class="bi bi-building-fill text-warning" style="font-size: 2rem;"></i>
                                             <h5 class="mt-2 text-warning fw-bold">Business owner (事業主)</h5>
                                             <div class="percentage-display text-warning"
-                                                 th:text="${#numbers.formatDecimal(businessOwnerPercentage, 0, 2)} + '%'">
+                                                 th:text="${#numbers.formatDecimal(businessOwnerPercentage, 0, 0)} + '%'">
                                                 0%
                                             </div>
                                             <div class="amount-display">
                                                 ¥<span
-                                                    th:text="${#numbers.formatDecimal(esbiData.businessOwnerIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                                    th:text="${#numbers.formatDecimal(esbiData.businessOwnerIncome, 0, 'COMMA', 0, 'POINT')}">0</span>
                                             </div>
                                         </div>
                                     </div>
@@ -119,12 +119,12 @@
                                             <i class="bi bi-briefcase-fill text-success" style="font-size: 2rem;"></i>
                                             <h5 class="mt-2 text-success fw-bold">Self-employed (自営業)</h5>
                                             <div class="percentage-display text-success"
-                                                 th:text="${#numbers.formatDecimal(selfEmployedPercentage, 0, 2)} + '%'">
+                                                 th:text="${#numbers.formatDecimal(selfEmployedPercentage, 0, 0)} + '%'">
                                                 0%
                                             </div>
                                             <div class="amount-display">
                                                 ¥<span
-                                                    th:text="${#numbers.formatDecimal(esbiData.selfEmployedIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                                    th:text="${#numbers.formatDecimal(esbiData.selfEmployedIncome, 0, 'COMMA', 0, 'POINT')}">0</span>
                                             </div>
                                         </div>
                                     </div>
@@ -137,11 +137,11 @@
                                             <i class="bi bi-graph-up-arrow text-info" style="font-size: 2rem;"></i>
                                             <h5 class="mt-2 text-info fw-bold">Investor (投資家)</h5>
                                             <div class="percentage-display text-info"
-                                                 th:text="${#numbers.formatDecimal(investorPercentage, 0, 2)} + '%'">0%
+                                                 th:text="${#numbers.formatDecimal(investorPercentage, 0, 0)} + '%'">0%
                                             </div>
                                             <div class="amount-display">
                                                 ¥<span
-                                                    th:text="${#numbers.formatDecimal(esbiData.investorIncome, 0, 'COMMA', 2, 'POINT')}">0</span>
+                                                    th:text="${#numbers.formatDecimal(esbiData.investorIncome, 0, 'COMMA', 0, 'POINT')}">0</span>
                                             </div>
                                         </div>
                                     </div>
