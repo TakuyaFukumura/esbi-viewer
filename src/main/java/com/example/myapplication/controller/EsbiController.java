@@ -67,11 +67,11 @@ public class EsbiController {
         String defaultUser = "default_user";
         Optional<EsbiData> targetData;
 
-        // IDが指定されている場合は該当のデータを取得、そうでなければ最新データを取得
-        if (id != null) {
-            targetData = esbiService.getDataById(id);
-        } else {
+        // IDが指定されていない場合は最新データを取得
+        if (id == null) {
             targetData = esbiService.getLatestDataByUser(defaultUser);
+        } else {
+            targetData = esbiService.getDataById(id);
         }
 
         if (targetData.isPresent()) {
