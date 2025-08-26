@@ -63,12 +63,19 @@ public class EsbiController {
     }
 
     @GetMapping("/esbi/visualization")
-    public String visualization(Model model) {
+    public String visualization(@RequestParam(value = "id", required = false) Long id, Model model) {
         String defaultUser = "default_user";
-        Optional<EsbiData> latestData = esbiService.getLatestDataByUser(defaultUser);
+        Optional<EsbiData> targetData;
 
-        if (latestData.isPresent()) {
-            EsbiData data = latestData.get();
+        // IDが指定されていない場合は最新データを取得
+        if (id == null) {
+            targetData = esbiService.getLatestDataByUser(defaultUser);
+        } else {
+            targetData = esbiService.getDataById(id);
+        }
+
+        if (targetData.isPresent()) {
+            EsbiData data = targetData.get();
             BigDecimal totalIncome = esbiService.getTotalIncome(data);
 
             model.addAttribute("esbiData", data);

@@ -121,6 +121,61 @@ class EsbiControllerSpec extends Specification {
                 .andExpect(model().attribute("noData", true))
     }
 
+    def "IDを指定した可視化ページが正常に表示されること"() {
+        given: "指定されたIDのESBIデータ"
+        def specificId = 5L
+        def esbiData = new EsbiData()
+        esbiData.id = specificId
+        esbiData.userName = "default_user"
+        esbiData.employeeIncome = new BigDecimal("3000000")
+        esbiData.selfEmployedIncome = new BigDecimal("1000000")
+        esbiData.businessOwnerIncome = new BigDecimal("500000")
+        esbiData.investorIncome = new BigDecimal("250000")
+        esbiData.createdAt = LocalDateTime.now()
+
+        def totalIncome = new BigDecimal("4750000")
+
+        when: "IDを指定して可視化ページにアクセス"
+        def result = mockMvc.perform(get("/esbi/visualization")
+                .param("id", specificId.toString()))
+
+        then: "ステータスが200で指定されたデータのvisualizationビューが返される"
+        result.andExpect(status().isOk())
+                .andExpect(view().name("esbi/visualization"))
+                .andExpect(model().attribute("esbiData", esbiData))
+                .andExpect(model().attribute("totalIncome", totalIncome))
+                .andExpect(model().attributeExists("employeePercentage"))
+                .andExpect(model().attributeExists("selfEmployedPercentage"))
+                .andExpect(model().attributeExists("businessOwnerPercentage"))
+                .andExpect(model().attributeExists("investorPercentage"))
+
+        and: "getDataByIdが呼ばれ、getLatestDataByUserは呼ばれない"
+        1 * esbiService.getDataById(specificId) >> Optional.of(esbiData)
+        1 * esbiService.getTotalIncome(esbiData) >> totalIncome
+        1 * esbiService.getPercentage(esbiData.employeeIncome, totalIncome) >> 63.16
+        1 * esbiService.getPercentage(esbiData.selfEmployedIncome, totalIncome) >> 21.05
+        1 * esbiService.getPercentage(esbiData.businessOwnerIncome, totalIncome) >> 10.53
+        1 * esbiService.getPercentage(esbiData.investorIncome, totalIncome) >> 5.26
+        0 * esbiService.getLatestDataByUser(_)
+    }
+
+    def "存在しないIDを指定した可視化ページでnoDataが表示されること"() {
+        given: "存在しないID"
+        def nonExistentId = 999L
+
+        when: "存在しないIDで可視化ページにアクセス"
+        def result = mockMvc.perform(get("/esbi/visualization")
+                .param("id", nonExistentId.toString()))
+
+        then: "ステータスが200でno dataフラグが設定される"
+        result.andExpect(status().isOk())
+                .andExpect(view().name("esbi/visualization"))
+                .andExpect(model().attribute("noData", true))
+
+        and: "getDataByIdが呼ばれる"
+        1 * esbiService.getDataById(nonExistentId) >> Optional.empty()
+    }
+
     def "ガイドページが正常に表示されること"() {
         when: "ガイドページにアクセス"
         def result = mockMvc.perform(get("/esbi/guide"))
