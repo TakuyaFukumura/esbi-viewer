@@ -96,4 +96,17 @@ public class EsbiController {
     public String guide() {
         return "esbi/guide";
     }
+
+    @PostMapping("/esbi/delete")
+    public String deleteEsbiData(
+            @RequestParam("id") Long id,
+            RedirectAttributes redirectAttributes) {
+        try {
+            esbiService.deleteData(id);
+            redirectAttributes.addFlashAttribute("successMessage", "履歴データを削除しました。");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "データの削除中にエラーが発生しました。");
+        }
+        return "redirect:/esbi/history";
+    }
 }
