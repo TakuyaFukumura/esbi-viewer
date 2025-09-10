@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESBI Viewer - ESBIクワドラント収入構造可視化ツール</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" 
+          integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .tech-badge {
+            margin: 0.25rem;
+        }
+        .esbi-demo {
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .esbi-demo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .section-padding {
+            padding: 80px 0;
+        }
+        .github-link {
+            background: #24292e;
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .github-link:hover {
+            background: #0366d6;
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- ヒーローセクション -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">
+                        <i class="bi bi-pie-chart-fill me-3"></i>ESBI Viewer
+                    </h1>
+                    <p class="lead mb-4">
+                        ESBIクワドラント（従業員・自営業者・事業主・投資家）の収入構造を可視化するWebアプリケーション
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-light text-dark fs-6">Spring Boot 3.5.5</span>
+                        <span class="badge bg-light text-dark fs-6">Java 17</span>
+                        <span class="badge bg-light text-dark fs-6">Bootstrap 5</span>
+                        <span class="badge bg-light text-dark fs-6">Thymeleaf</span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <i class="bi bi-graph-up text-white" style="font-size: 12rem; opacity: 0.8;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 機能概要セクション -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="h1 fw-bold">機能概要</h2>
+                    <p class="lead text-muted">ESBI Viewerが提供する主要機能</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center h-100">
+                        <i class="bi bi-pencil-square text-primary feature-icon"></i>
+                        <h5 class="fw-bold">データ入力</h5>
+                        <p class="text-muted">各クワドラントの収入額を簡単に入力できます。直感的なフォームで効率的なデータ管理を実現。</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center h-100">
+                        <i class="bi bi-graph-up text-success feature-icon"></i>
+                        <h5 class="fw-bold">可視化</h5>
+                        <p class="text-muted">収入構造をクワドラント形式で視覚的に表示。パーセンテージと金額で収入バランスを一目で把握。</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center h-100">
+                        <i class="bi bi-clock-history text-warning feature-icon"></i>
+                        <h5 class="fw-bold">履歴管理</h5>
+                        <p class="text-muted">過去の収入データを時系列で管理。収入構造の変化を追跡し、成長の軌跡を確認できます。</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center h-100">
+                        <i class="bi bi-info-circle text-info feature-icon"></i>
+                        <h5 class="fw-bold">学習ガイド</h5>
+                        <p class="text-muted">ESBIクワドラントの概念や財務的自由への道筋を詳しく解説。理論を実践に活かせます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESBIクワドラント説明 -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="h1 fw-bold">ESBIクワドラントとは</h2>
+                    <p class="lead text-muted">4つの収入源を理解し、財務的自由への道筋を明確にします</p>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="esbi-demo bg-primary bg-opacity-10 border-primary">
+                        <i class="bi bi-person-fill text-primary" style="font-size: 3rem;"></i>
+                        <h5 class="mt-3 text-primary fw-bold">Employee (従業員)</h5>
+                        <p class="text-muted mb-0">給与所得 - 時間を対価とした安定収入</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="esbi-demo bg-warning bg-opacity-10 border-warning">
+                        <i class="bi bi-building-fill text-warning" style="font-size: 3rem;"></i>
+                        <h5 class="mt-3 text-warning fw-bold">Business owner (事業主)</h5>
+                        <p class="text-muted mb-0">事業からの不労所得 - システムが働く収入</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="esbi-demo bg-success bg-opacity-10 border-success">
+                        <i class="bi bi-briefcase-fill text-success" style="font-size: 3rem;"></i>
+                        <h5 class="mt-3 text-success fw-bold">Self-employed (自営業)</h5>
+                        <p class="text-muted mb-0">事業所得 - 専門性を活かした独立収入</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="esbi-demo bg-info bg-opacity-10 border-info">
+                        <i class="bi bi-graph-up-arrow text-info" style="font-size: 3rem;"></i>
+                        <h5 class="mt-3 text-info fw-bold">Investor (投資家)</h5>
+                        <p class="text-muted mb-0">投資からの不労所得 - 資産が働く収入</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技術仕様セクション -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="h1 fw-bold">技術仕様</h2>
+                    <p class="lead text-muted">モダンな技術スタックで構築された高品質なWebアプリケーション</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">
+                                <i class="bi bi-palette me-2"></i>フロントエンド
+                            </h5>
+                            <div class="d-flex flex-wrap">
+                                <span class="badge bg-primary tech-badge">Thymeleaf</span>
+                                <span class="badge bg-primary tech-badge">Bootstrap 5</span>
+                                <span class="badge bg-primary tech-badge">Bootstrap Icons</span>
+                                <span class="badge bg-primary tech-badge">CSS3</span>
+                                <span class="badge bg-primary tech-badge">HTML5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">
+                                <i class="bi bi-server me-2"></i>バックエンド
+                            </h5>
+                            <div class="d-flex flex-wrap">
+                                <span class="badge bg-success tech-badge">Spring Boot 3.5.5</span>
+                                <span class="badge bg-success tech-badge">Spring Data JPA</span>
+                                <span class="badge bg-success tech-badge">Spring Web</span>
+                                <span class="badge bg-success tech-badge">Java 17</span>
+                                <span class="badge bg-success tech-badge">Maven</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-warning">
+                                <i class="bi bi-tools me-2"></i>ツール・ミドルウェア
+                            </h5>
+                            <div class="d-flex flex-wrap">
+                                <span class="badge bg-warning tech-badge">H2 Database</span>
+                                <span class="badge bg-warning tech-badge">Spock Testing</span>
+                                <span class="badge bg-warning tech-badge">Groovy</span>
+                                <span class="badge bg-warning tech-badge">SpotBugs</span>
+                                <span class="badge bg-warning tech-badge">Docker</span>
+                                <span class="badge bg-warning tech-badge">Spring Boot Actuator</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHubリンクセクション -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="h1 fw-bold mb-4">ソースコード</h2>
+                    <p class="lead text-muted mb-4">
+                        ESBI ViewerはMITライセンスのオープンソースプロジェクトです。<br>
+                        GitHubでソースコードを確認し、プロジェクトに貢献することができます。
+                    </p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="https://github.com/TakuyaFukumura/esbi-viewer" 
+                           class="btn btn-dark github-link btn-lg" target="_blank" rel="noopener">
+                            <i class="bi bi-github me-2"></i>GitHub Repository
+                        </a>
+                        <a href="https://github.com/TakuyaFukumura/esbi-viewer/actions" 
+                           class="btn btn-outline-secondary btn-lg" target="_blank" rel="noopener">
+                            <i class="bi bi-gear-fill me-2"></i>CI/CD Actions
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <img src="https://github.com/TakuyaFukumura/esbi-viewer/workflows/Build/badge.svg" 
+                             alt="Build Status" class="me-2">
+                        <img src="https://img.shields.io/badge/Java-17-orange" alt="Java 17" class="me-2">
+                        <img src="https://img.shields.io/badge/Spring%20Boot-3.5.5-brightgreen" alt="Spring Boot" class="me-2">
+                        <img src="https://img.shields.io/badge/Maven-3.6.3-blue" alt="Maven">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 機能詳細セクション -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="h1 fw-bold">機能詳細</h2>
+                    <p class="lead text-muted">各画面の機能とユーザーエクスペリエンス</p>
+                </div>
+            </div>
+            
+            <!-- ホーム画面 -->
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <div class="pe-lg-4">
+                        <h3 class="fw-bold text-primary">
+                            <i class="bi bi-house-fill me-2"></i>ホーム画面
+                        </h3>
+                        <p class="lead">ESBIクワドラントの概要とアプリケーションへの導線を提供</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>各クワドラントの説明とアイコン表示</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>直感的なナビゲーション</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>レスポンシブデザイン対応</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Bootstrap 5によるモダンなUI</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow">
+                        <div class="card-body bg-light text-center">
+                            <i class="bi bi-image text-muted" style="font-size: 4rem;"></i>
+                            <p class="text-muted mt-2">ホーム画面のスクリーンショット</p>
+                            <small class="text-muted">カード形式で各クワドラントを表示し、データ入力への導線を提供</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- データ入力画面 -->
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="ps-lg-4">
+                        <h3 class="fw-bold text-success">
+                            <i class="bi bi-pencil-square me-2"></i>データ入力画面
+                        </h3>
+                        <p class="lead">各クワドラントの収入データを簡単に入力</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>4つのクワドラントの収入入力フォーム</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>数値入力の検証とエラーハンドリング</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>保存後の可視化画面への自動遷移</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>各クワドラントの説明テキスト表示</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="card shadow">
+                        <div class="card-body bg-light text-center">
+                            <i class="bi bi-ui-checks text-muted" style="font-size: 4rem;"></i>
+                            <p class="text-muted mt-2">データ入力画面のスクリーンショット</p>
+                            <small class="text-muted">各クワドラントの収入額を入力する直感的なフォーム</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 可視化画面 -->
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <div class="pe-lg-4">
+                        <h3 class="fw-bold text-warning">
+                            <i class="bi bi-graph-up me-2"></i>可視化画面
+                        </h3>
+                        <p class="lead">ESBIクワドラントの収入構造を視覚的に表示</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>4つのクワドラントをカラフルに表示</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>パーセンテージと金額の同時表示</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>合計収入の表示</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>ホバーエフェクトによるインタラクティブUI</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow">
+                        <div class="card-body bg-light text-center">
+                            <i class="bi bi-pie-chart text-muted" style="font-size: 4rem;"></i>
+                            <p class="text-muted mt-2">可視化画面のスクリーンショット</p>
+                            <small class="text-muted">各クワドラントの収入構造を色分けして表示</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 履歴画面 -->
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="ps-lg-4">
+                        <h3 class="fw-bold text-info">
+                            <i class="bi bi-clock-history me-2"></i>履歴画面
+                        </h3>
+                        <p class="lead">過去の収入データの記録と管理</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>時系列での収入データ表示</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>統計情報（総記録数、期間など）</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>過去データの詳細確認</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>データ削除機能</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="card shadow">
+                        <div class="card-body bg-light text-center">
+                            <i class="bi bi-table text-muted" style="font-size: 4rem;"></i>
+                            <p class="text-muted mt-2">履歴画面のスクリーンショット</p>
+                            <small class="text-muted">過去の収入データを時系列で管理・表示</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ガイド画面 -->
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="pe-lg-4">
+                        <h3 class="fw-bold text-secondary">
+                            <i class="bi bi-info-circle me-2"></i>ガイド画面
+                        </h3>
+                        <p class="lead">ESBIクワドラントの概念と財務的自由への道筋を解説</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>各クワドラントの詳細説明</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>財務的自由への移行パターン</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>学習ステップの提示</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>理論の実践的活用方法</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow">
+                        <div class="card-body bg-light text-center">
+                            <i class="bi bi-book text-muted" style="font-size: 4rem;"></i>
+                            <p class="text-muted mt-2">ガイド画面のスクリーンショット</p>
+                            <small class="text-muted">ESBIクワドラントの理論を詳しく解説</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">
+                        <i class="bi bi-pie-chart-fill me-2"></i>ESBI Viewer - ESBIクワドラント収入構造可視化ツール
+                    </p>
+                    <small class="text-muted">Built with Spring Boot 3.5.5 & Bootstrap 5</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
