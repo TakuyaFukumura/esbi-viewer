@@ -1,14 +1,31 @@
-# basic-spring-boot-app
+# ESBI Viewer
 
-[![Build](https://github.com/TakuyaFukumura/basic-spring-boot-app/workflows/Build/badge.svg)](https://github.com/TakuyaFukumura/basic-spring-boot-app/actions?query=branch%3Amain)
+[![Build](https://github.com/TakuyaFukumura/esbi-viewer/workflows/Build/badge.svg)](https://github.com/TakuyaFukumura/esbi-viewer/actions?query=branch%3Amain)
 [![Java](https://img.shields.io/badge/Java-17-orange)](https://openjdk.java.net/projects/jdk/17/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-brightgreen)](https://spring.io/projects/spring-boot)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.5-brightgreen)](https://spring.io/projects/spring-boot)
 [![Maven](https://img.shields.io/badge/Maven-3.6.3-blue)](https://maven.apache.org/)
 
-SpringBootアプリ開発の元となるリポジトリ
+ESBIクワドラント（従業員・自営業者・事業主・投資家）の収入構造を可視化するWebアプリケーション
+
+## 概要
+
+ESBI Viewerは、ロバート・キヨサキの著書「金持ち父さん 貧乏父さん」で紹介されているESBIクワドラント理論を基にした収入構造可視化ツールです。
+
+### ESBIクワドラントとは
+- **E（Employee）**: 従業員 - 給与所得
+- **S（Self-employed）**: 自営業者 - 事業所得
+- **B（Business owner）**: 事業主 - 事業からの不労所得
+- **I（Investor）**: 投資家 - 投資からの不労所得
+
+### 主な機能
+- **データ入力**: 各クワドラントの収入額を入力
+- **可視化**: 収入構造をクワドラント形式で視覚的に表示
+- **履歴管理**: 過去の収入データの記録と管理
+- **ガイド**: ESBIクワドラントの概念解説
 
 ## 資料
-- https://spring.pleiades.io/spring-boot/docs/current/reference/html/getting-started.html
+- [Spring Boot公式ドキュメント](https://spring.pleiades.io/spring-boot/docs/current/reference/html/getting-started.html)
+- [ESBIクワドラント理論について](https://en.wikipedia.org/wiki/Cashflow_Quadrant)
 
 ## Docker開発環境セットアップ
 
@@ -19,10 +36,10 @@ SpringBootアプリ開発の元となるリポジトリ
 ### 起動手順
 1. リポジトリをクローン
     ```bash
-    git clone https://github.com/TakuyaFukumura/basic-spring-boot-app.git
+    git clone https://github.com/TakuyaFukumura/esbi-viewer.git
     ```
     ```bash
-    cd basic-spring-boot-app
+    cd esbi-viewer
     ```
 2. Docker Composeでアプリケーションを起動
     ```bash
@@ -32,11 +49,18 @@ SpringBootアプリ開発の元となるリポジトリ
 
     http://localhost:8080
 
-4. H2データベースコンソールへのアクセス（開発用）
+4. アプリケーション機能
+    - **ホーム**: ESBIクワドラントの概要表示
+    - **データ入力**: `/esbi/input` - 収入データの入力
+    - **可視化**: `/esbi/visualization` - クワドラント可視化
+    - **履歴**: `/esbi/history` - 過去データの閲覧
+    - **ガイド**: `/esbi/guide` - ESBIクワドラント解説
+
+5. H2データベースコンソールへのアクセス（開発用）
 
     http://localhost:8080/h2-console
 
-5. ヘルスチェックエンドポイント
+6. ヘルスチェックエンドポイント
 
     http://localhost:8080/actuator/health
 
@@ -69,7 +93,7 @@ docker compose build --no-cache
 ./mvnw clean package
 ```
 ```bash
-java -jar target/myproject.jar
+java -jar target/esbi-viewer.jar
 ```
 
 ## 静的解析ツール（SpotBugs）
@@ -122,3 +146,24 @@ Docker環境でもSpotBugsを実行できます：
 ```bash
 docker compose exec app ./mvnw spotbugs:spotbugs
 ```
+
+## アプリケーション固有の機能
+
+### データ構造
+- **EsbiData**: 各クワドラントの収入データを格納するエンティティ
+- **ユーザー管理**: 現在はデフォルトユーザーでの単一ユーザー対応
+- **履歴機能**: 入力データの時系列管理
+
+### 技術仕様
+- **フロントエンド**: Thymeleaf + Bootstrap 5
+- **バックエンド**: Spring Boot 3.5.5 + Spring Data JPA
+- **データベース**: H2（インメモリ）
+- **ビルドツール**: Maven
+- **テストフレームワーク**: Spock (Groovy)
+
+### 開発環境の特記事項
+- ダークモード切替機能搭載
+- レスポンシブデザイン対応
+- 日本語UI
+- リアルタイム収入割合計算
+- データ削除機能付き履歴管理
